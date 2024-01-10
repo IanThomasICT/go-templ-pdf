@@ -1,0 +1,32 @@
+package reports 
+
+import "fmt"
+
+templ MainReport(userName string, userId int64) {
+	@Page() {
+		@Heading("text-2xl") {
+			<span>I am a headline made with HTML for #{ fmt.Sprintf("%d", userId) }: <strong>{ userName }</strong></span>
+		}
+		<p class="text-red-600">
+			And I am a simple text paragraph. The color of this text is styled with CSS. Click the button below to remove me through the power JavaScript.
+		</p>
+		<button type="button" class="bg-blue-600 text-white italic px-6 py-2">
+			Hide the text above?
+		</button>
+	}
+}
+
+templ Page() {
+	<!DOCTYPE html>
+	<html>
+		<div class="mx-auto bg-white aspect-[8.5/11] h-screen space-y-2 border px-8 py-6 text-xs tracking-tight">
+			{ children... }
+		</div>
+	</html>
+}
+
+templ Heading(className string) {
+	<h2 class="text-base">
+		{ children... }
+	</h2>
+}
